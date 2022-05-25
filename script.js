@@ -6,27 +6,47 @@ const goods = [
   ];
 
 
-  
-  
-  const renderGoodsItem = (a,b,c) => {
-  
-    return `
+  class GoodsItem {
+    constructor({ title, price, imgScr }) {
+      this.imgScr = imgScr;
+      this.title = title;
+      this.price = price;
+    }
+    render() {
+      return `
       <div class="goods-item">
-      <img src="${c}" alt="${a}">
-        <h3>${a}</h3>
-        <p>${b}</p>
+      <img src="${this.imgScr}" alt="${this.title}">
+        <h3>${this.title}</h3>
+        <p>${this.price}</p>
       </div>
     `;
-  };
-  
-  const renderGoodsList = (list = []) => {
-    let goodsList = list.map(({title,price,imgScr}) => renderGoodsItem(title,price, imgScr));
-      debugger
-    document.querySelector('.goods-list').innerHTML = goodsList.join('');
+    }
+  }
+  class GoodsList {
+    items = [];
+    fetchGoods() {
+      this.items = goods;
+    }
+    getCount(){
+      return this.items.reduce((number, { price }) => {
+        return number + price;
+      }, 0)
+
+    }
+    render() {
+      const goods = this.items.map(item => {
+        const goodItem = new GoodsItem(item);
+        return goodItem.render()
+      }).join('');
+    
+      document.querySelector('.goods-list').innerHTML = goods;
+    }
   }
   
-  renderGoodsList(goods);
-
+  const goodsList = new GoodsList();
+  goodsList.fetchGoods();
+  goodsList.render();
+  goodsList.getCount();
 
   document.querySelector('header').classList ="container";
   document.querySelector('main').classList ="container";
