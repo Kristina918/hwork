@@ -12,6 +12,7 @@
   min-height: 80px;
   display: flex;
   justify-content: right;
+  align-items: center;
   background: linear-gradient(90deg, rgb(25, 238, 210), rgb(0, 0, 0) 81%);
 }
 
@@ -44,4 +45,14 @@
 
 .icon {
   fill: #19eed2;
+}
+
+.goods-search {
+  min-height: 32px;
+}
+
+.search-button {
+  min-height: 36px;
+  min-width: 80px;
+  margin-right: 20px;
 }/*# sourceMappingURL=style.css.map */
